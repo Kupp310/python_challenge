@@ -29,6 +29,20 @@ average_profit_loss_change = sum(profit_loss_changes) / len(profit_loss_changes)
 total_months = len(budget_data)
 #total amount of profit/losses over the entire period
 total_profit_loss = sum(budget_data.values())
-
+#Biggest increase in profit/loss
 greatest_increase = max(profit_loss_changes)
-print(greatest_increase)
+#smallest increase in profit/loss
+greatest_decrease = min(profit_loss_changes)
+
+#write to other file
+output_path = os.path.join("analysis", "pybank_analysis.txt")
+
+with open(output_path, "w") as txtfile:
+    csvwriter = csv.writer(txtfile)
+    txtfile.write("Financial Analysis\n")
+    txtfile.write("---------------------------\n")
+    txtfile.write(f"Total Months: {total_months}\n")
+    txtfile.write(f"Total: ${total_profit_loss}\n")
+    txtfile.write(f"Average Change: ${average_profit_loss_change:.2f}\n")
+    txtfile.write(f"Greatest Increase in Profits: ${greatest_increase}\n")
+    txtfile.write(f"Greatest Decrease in Profits: ${greatest_decrease}")
